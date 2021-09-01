@@ -30,10 +30,28 @@
 		
 		<h3><a href="/artista">Incluir Novo Artista</a></h3>
 		
-		<c:if test="${not empty artistas"}>
+		
+	
+		
+		<c:if test="${not empty artistas}">
 			<h2>Listagem de Artistas: ${artistas.size()}</h2>
-			
-		 <table class="table table-striped">
+
+			<form action="/artista/ordenar" method= "post">
+				<div class="input-group">
+				<select name ="sortBy" class = "form-control">
+					<option value="nome">Nome</option>
+					<option value="siglaCidade">Cidade</option>
+				</select>
+				
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<i class="glyphicon glyphicon-sort-by-alphabet"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+
+			<table class="table table-striped">
 			   <thead>
 			      <tr>
 			      	<th>id</th>
@@ -45,20 +63,17 @@
 			 <tbody>
 				 <c:forEach var= "artista" items="${artistas}">
 			        <tr>
-			        <td>${id.count}</td>
-			        <td>${art.nome}</td>
-			        <td>${art.siglaCidade}</td>
-			        <td><a href="/artista/${id.count}/excluir">Excluir</a></td>
-			        <td><a href="/artista/consultar">Detalhar</a></td>
+			        <td>${artista.id}</td>
+			        <td>${artista.nome}</td>
+			        <td>${artista.siglaCidade}</td>
+			        <td><a href="/artista/${artista.id}/excluir">Excluir</a></td>
+			        <td><a href="/artista/${artista.id}/consultar">Detalhar</a></td>
 			        </tr>	
 			    </c:forEach>
 			 </tbody>
 			  </table>
 			  
 			  
-			  <c:if teste = "${empty artistas}">
-					<h2>Não existem artistas cadastrados!!!</h2>			  
-				</c:if>
 	
 		</c:if>
 

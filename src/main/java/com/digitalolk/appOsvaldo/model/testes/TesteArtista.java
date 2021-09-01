@@ -9,3 +9,5 @@ public class TesteArtista {
 		 System.out.println("Grande Cantora Paraibana"+ artista);
 	 }
 }
+
+

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,23 +18,37 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 
+	
 
+	<c:set var="titulo" value ="Cadastramento de Artistas"></c:set>
+	<c:set var="rota" value ="/artista/incluir"/>
+	<c:set var="metodo" value ="post"/>
+	<c:set var="botao" value ="Cadastrar"/>
+	
+	<c:if test="$[not empty meuArtista]">
 
-	<div class="container">
-		<h2>Tela de Cadastro</h2>
-		<form action="artista/incluir" method= "post">
+		<c:set var="titulo" value="Consulta de Artistas"></c:set>
+		<c:set var="rota" value="/voltar" />
+		<c:set var="metodo" value="get" />
+		<c:set var="botao" value="Voltar" />
+
+	</c:if>
+	
+		<div class="container">
+
+		<h2>${titulo}</h2>s
+		<form action="${rota}" method="${metodo}">
 			<div class="form-group">
-				<label>Nome</label> <input type="text"
-					class="form-control" placeholder="Digite o nome"
-					name="nome">
-			</div>
-			<div class="form-group">
-				<label>Cidade</label> <input type="text"
-					class="form-control" placeholder="Digita a sigla da cidade"
-					name="cidade">
+				<label>Nome</label>
+			 	 <input type="text"type="text" class="form-control" value ="${MeuArtista.nome }" placeholder="Entre com o nome do artista" name="nome"></input>
 			</div>
 			
-			<button type="submit" class="btn btn-default">Cadastrar</button>
+			<div class="form-group">
+				<label>Cidade</label>
+				 <input type="text"class="form-control" placeholder="Digita a sigla da cidade" ${MeuArtista.siglaCidade}name="cidade">
+			</div>
+			
+			<button type="submit" class="btn btn-default">${botao}</button>
 		</form>
 	</div>
 		
