@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.digitalolk.appOsvaldo.model.domain.Artista;
 import com.digitalolk.appOsvaldo.model.service.ArtistaService;
+import com.digitalolk.appOsvaldo.model.service.UsuarioService;
 
 
 
@@ -21,13 +22,21 @@ public class ArtistaController {
 	@Autowired//instancia em todos os lugares necessarios o meu objeto
 	private ArtistaService artistaService;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@GetMapping(value="/")
 	public String inicializa() {
 		return"index";
 	}
 	
 	@GetMapping(value="/artista")
-	public String telaCadastro() {
+	public String telaCadastro(Model model) {
+		
+		usuarioService.obterLista();
+		
+		model.addAttribute("usuariosLista", usuarioService.obterLista());
+		
 		return"artista/cadastro";
 
 	}
@@ -69,7 +78,7 @@ public class ArtistaController {
 		
 		model.addAttribute("meuArtista", artista);
 		
-		return telaCadastro();
+		return telaCadastro(model);
 	}
 	
 	@GetMapping(value="/artista/lista")

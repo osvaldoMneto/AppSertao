@@ -38,6 +38,17 @@
 
 		<h2>${titulo}</h2>s
 		<form action="${rota}" method="${metodo}">
+      
+      <div class="form-group">
+      <label for="sel1">Usuario:</label>
+		      <select class="form-control" name="usuario.id">
+		      	
+		      	<c:forEach var="u" items="$(usuarioLista)">
+		       		 <option value="${u.id}">${u.nome}</option>
+		        </c:forEach>
+		      </select>
+				
+	  </div>
 			<div class="form-group">
 				<label>Nome</label>
 			 	 <input type="text"type="text" class="form-control" value ="${MeuArtista.nome }" placeholder="Entre com o nome do artista" name="nome"></input>

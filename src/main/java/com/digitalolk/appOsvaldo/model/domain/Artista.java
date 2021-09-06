@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Artista {
@@ -12,21 +13,8 @@ public class Artista {
 	@Id     // para declarar que o id é uma chave primaria.
 	@GeneratedValue(strategy = GenerationType.IDENTITY)// para autoincremento
 	private Integer id;
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public boolean isInmomoria() {
-		return inmomoria;
-	}
-
-	public void setInmomoria(boolean inmomoria) {
-		this.inmomoria = inmomoria;
-	}
+	@ManyToOne
+	private Usuario usuario;
 	private String nome; // Luis Gonzaga
 	private String siglaCidade; //EXU- O proprio banco de Dados entendera o kamilcase e adicionara Sigla_cidade
 	private boolean inmomoria; //true
@@ -76,5 +64,30 @@ public class Artista {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-		
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public boolean isInmomoria() {
+		return inmomoria;
+	}
+
+	public void setInmomoria(boolean inmomoria) {
+		this.inmomoria = inmomoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 }
